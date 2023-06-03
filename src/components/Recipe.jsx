@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import RecipeDetails from "./RecipeDetails";
+import RecipeDetailsContainer from "./RecipeDetailsContainer";
 
 const Recipe = ({ recipe }) => {
-  const [show, setShow] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const { label, image, url, ingredients } = recipe.recipe;
 
   return (
@@ -12,8 +12,8 @@ const Recipe = ({ recipe }) => {
       <a href={url} target="_blank" rel="noopener noreferrer">
         URL
       </a>
-      <button onClick={() => setShow(!show)}>Ingredients</button>
-      {show && <RecipeDetails ingredients={ingredients} />}
+      <button onClick={() => setOpenModal(true)}>Ingredients</button>
+      <RecipeDetailsContainer open={openModal} ingredients={ingredients} label={label} onClose={() => setOpenModal(false)} />
     </div>
   );
 };
